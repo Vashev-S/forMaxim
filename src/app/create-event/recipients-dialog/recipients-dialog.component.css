@@ -1,0 +1,8 @@
+.finder {
+  margin-bottom: 10px;
+}
+
+.table-wrapper {
+  max-height: 480px;
+  overflow-y: auto;
+}

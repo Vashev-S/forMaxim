@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+button {
+  box-shadow: none !important
+}
+
+.focus {
+  box-shadow: none !important;
+}
+
+.btn-outline-primary:focus {
+  box-shadow: none !important;
+}
+
+ngb-typeahead-window {
+  max-height: 200px;
+  overflow: auto;
+}
+
+.tab-pane {
+  height: 750px;
+  overflow: hidden;
+  overflow-y: scroll;
+}

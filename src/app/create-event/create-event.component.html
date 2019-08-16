@@ -1,0 +1,94 @@
+<div class="create-event-wrapper">
+  <form [formGroup]="eventForm" style="flex: 1; margin-right: 10px">
+    <div class="panel-body">
+      <label class="radio-button-label">
+        <input type="radio" name="type" class="radio-button" value="outages" formControlName="type">
+        <span class="radio-button-text">Outage</span>
+      </label>
+      <label class="radio-button-label">
+        <input type="radio" name="type" class="radio-button" value="maintenances" formControlName="type">
+        <span class="radio-button-text">Maintenance</span>
+      </label>
+      <br>
+    </div>
+    <div class="panel-body">
+      <label for="service">Service affected *</label>
+      <input
+        id="service"
+        type="text"
+        class="form-control"
+        formControlName="service"
+        [ngbTypeahead]="searchServiceAffected"
+        (focus)="focusService$.next($event.target.value)"
+        (click)="clickService$.next($event.target.value)"
+        #services="ngbTypeahead"/>
+    </div>
+    <div class="panel-body">
+      <label for="instance">Instance affected</label>
+      <input
+        id="instance"
+        type="text"
+        class="form-control"
+        placeholder="Optional"
+        formControlName="instance"
+        [ngbTypeahead]="searchInstanceAffected"
+        (focus)="focusInstance$.next($event.target.value)"
+        (click)="clickInstance$.next($event.target.value)"
+        #instances="ngbTypeahead"
+        [disabled]="instances.length !== 0"/>
+    </div>
+    <div class="panel-body">
+      <label for="start">Start *</label>
+      <input id="start" type="datetime-local" class="form-control" formControlName="start"/>
+    </div>
+    <div class="panel-body" *ngIf="eventForm.value.type === 'maintenances'">
+      <label for="end">End *</label>
+      <input id="end" type="datetime-local" class="form-control" formControlName="end"/>
+    </div>
+    <div class="panel-body">
+      <label for="recipients">
+        Additional recipients
+        <button class="btn btn-outline-primary" (click)="openRecipients()" [disabled]="this.eventForm.get('service').invalid">Show</button>
+      </label>
+      <textarea id="recipients" class="form-control" rows="2" placeholder="Optional" formControlName="recipients"></textarea>
+    </div>
+    <div class="panel-body">
+      <label for="summary">Summary *</label>
+      <textarea id="summary" class="form-control" rows="2" formControlName="summary"></textarea>
+    </div>
+    <div class="panel-body">
+      <label for="impact">Impact *</label>
+      <textarea id="impact" class="form-control" rows="2" formControlName="impact"></textarea>
+    </div>
+    <div class="panel-body">
+      <label for="details">Details *</label>
+      <textarea id="details" class="form-control" rows="2" formControlName="details"></textarea>
+    </div>
+    <div class="panel-body" style="height: 70px" *ngIf="eventForm.value.type === 'outages'">
+    </div>
+    <div class="panel-body panel-action">
+      <div class="result-message">
+        <p class="success-message"> {{ resultMessage }} </p>
+        <p class="error-message"> {{ errorMessage }} </p>
+      </div>
+      <div style="flex: 1"></div>
+      <div>
+        <button
+          type="button"
+          class="btn btn-secondary reset-button"
+          (click)="reset()">
+          Reset
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary submit-btn"
+          (click)="submit()"
+          [disabled]="eventForm.invalid || eventForm.value.type === 'maintenances' && !eventForm.value.end"
+          [ngClass]="{'disable_button': eventForm.invalid || eventForm.value.type === 'maintenances' && !eventForm.value.end}">
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+  <app-service-outages #listIncident></app-service-outages>
+</div>

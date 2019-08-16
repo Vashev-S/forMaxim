@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <h4 class="modal-title">Result</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div style="display: flex">
+    <p>Created event with ID: {{id}} </p>
+    <a href="{{ getLinkToIncident(sys_id) }}" style="margin-left: 10px" target="_blank" *ngIf="sys_id">link</a>
+  </div>
+</div>

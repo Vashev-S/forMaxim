@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Recipients</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" *ngIf="subscribers && !loading">
+  <input class="form-control finder" type="text" [formControl]="filter" placeholder="Search email"/>
+  <div class="table-wrapper">
+    <table class="table table-striped">
+      <tr *ngFor="let subscriber of subscribers$ | async; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td><ngb-highlight [result]="subscriber" [term]="filter.value"></ngb-highlight></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="modal-body" *ngIf="!subscribers">
+  <p>Recipients not found</p>
+</div>
+<div class="modal-body" *ngIf="loading">
+  <p>Recipients download...</p>
+</div>

@@ -1,0 +1,75 @@
+.panel-action {
+  margin-top: 10px;
+  display: flex;
+}
+
+.reset-button {
+  margin-right: 10px;
+}
+
+.result-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.success-message {
+  margin: 0;
+  color: green;
+}
+
+.error-message {
+  margin: 0;
+  color: red;
+}
+
+.panel-body {
+  margin: 5px 0;
+}
+
+.create-event-wrapper {
+  display: flex;
+}
+
+.disable_button {
+  opacity: 0.3;
+}
+
+.btn-primary {
+  background-color: gray;
+  border-color: gray;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.radio-button-label {
+  cursor: pointer;
+}
+
+.radio-button {
+  display: none;
+}
+
+.radio-button-label {
+  margin-right: 5px;
+}
+
+.radio-button + .radio-button-text:before {
+  content: "\2714";
+  border: 0.1em solid #000000;
+  border-radius: 5px;
+  color: transparent;
+  transition: 0.3s;
+  margin-right: 5px;
+}
+
+.radio-button:checked + .radio-button-text:before {
+  content: "\2714";
+  border: 0.1em solid #000000;
+  border-radius: 5px;
+  color: #ffffff;
+  transition: 0.3s;
+}

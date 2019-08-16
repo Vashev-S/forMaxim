@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+  <!-- Ugh...jelly...some people love it....I do not -->
+  <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+    <div style="display:none"><g:evaluate object="true">var sessiontoken=gs.getSession().getSessionToken();</g:evaluate></div>
+
+  <html>
+    <head>
+      <meta charset="utf-8" />
+      <title>notification-alert</title>
+
+    <!-- bootstrap...why not use a CDN? Its so much easier-->
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+      <app-root token="$[sessiontoken]">Loading...</app-root>
+      <script src="https://use.fontawesome.com/e65ca12fde.js"></script>
+    </body>
+  </html>
+
+
+  <!--
+      ****************************************************************************
+      * BUNDLED FILES
+      ****************************************************************************
+      * We have to use jelly to include our bundled files. This tries to default
+      * to finding 4 files (inline,main,vendor,polyfill) within the same scope as the ui page
+      * if your files are named differently, then you will need to manually add them.
+      ****************************************************************************
+    <g:requires name="scope.script.jsdbx" />
+  -->
+  <g:requires name="$[this].runtime.jsdbx?no-cache={{runtime-md5}}" />
+  <g:requires name="$[this].polyfills.jsdbx?no-cache={{polyfills-md5}}" />
+  <g:requires name="$[this].main.jsdbx?no-cache={{main-md5}}" />
+
+  <!--
+      ****************************************************************************
+      * LIVE RELOAD
+      ****************************************************************************
+      * Uncomment this to enable live reload. This requires that you have the live
+      * reload application (https://github.com/nathangrove/servicenow-livereload.git)
+      * installed on your instance. This isn't really necessary for Angular2
+      * development. Developing locally is much better.
+      ****************************************************************************
+      <g:requires name="x_ngrove_livereload.ui_page_livereload.jsdbx?page=$[sys_id]" />
+  -->
+
+</j:jelly>

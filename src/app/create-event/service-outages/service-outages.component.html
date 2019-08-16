@@ -1,0 +1,67 @@
+<div style="flex: 1; display: flex">
+  <ngb-tabset justify="start" style="flex: 1">
+    <ngb-tab title="All">
+      <ng-template ngbTabContent>
+        <table class="table incident-table" *ngIf="!loading">
+          <tbody>
+          <tr *ngFor="let incident of forAlm === 'ALM' ? incidentsForAlm : incidents; index as i" [ngClass]="{'unscheduled': incident.u_scheduled_type === 'Unscheduled', 'scheduled': incident.u_scheduled_type === 'Scheduled' }">
+            <td>
+              <p class="cell"> {{ incident.u_outage_details }} </p>
+              <p class="cell" *ngIf="incident.u_scheduled_outage_begin"> Outage start: {{ incident.u_scheduled_outage_begin }} </p>
+              <p class="cell" *ngIf="incident.u_scheduled_type === 'Scheduled' && incident.u_scheduled_outage_end"> Outage end: {{ incident.u_scheduled_outage_end }} </p>
+              <p class="cell">State: {{ incident.state }}</p>
+              <a href="{{ getLinkToIncident(incident.sys_id) }}" target="_blank">link</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Scheduled">
+      <ng-template ngbTabContent>
+        <table class="table incident-table" *ngIf="!loading">
+          <tbody>
+          <tr *ngFor="let incident of forAlm === 'ALM' ? incidentsScheduledForAlm : incidentsScheduled; index as i" [ngClass]="{'unscheduled': incident.u_scheduled_type === 'Unscheduled', 'scheduled': incident.u_scheduled_type === 'Scheduled' }">
+            <td>
+              <p class="cell"> {{ incident.u_outage_details }} </p>
+              <p class="cell" *ngIf="incident.u_scheduled_outage_begin"> Outage start: {{ incident.u_scheduled_outage_begin }} </p>
+              <p class="cell" *ngIf="incident.u_scheduled_type === 'Scheduled' && incident.u_scheduled_outage_end"> Outage end: {{ incident.u_scheduled_outage_end }} </p>
+              <p class="cell">State: {{ incident.state }}</p>
+              <a href="{{ getLinkToIncident(incident.sys_id) }}" target="_blank">link</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="Unscheduled">
+      <ng-template ngbTabContent>
+        <table class="table incident-table" *ngIf="!loading">
+          <tbody>
+          <tr *ngFor="let incident of forAlm === 'ALM' ? incidentsUnscheduledForAlm : incidentsUnscheduled; index as i" [ngClass]="{'unscheduled': incident.u_scheduled_type === 'Unscheduled', 'scheduled': incident.u_scheduled_type === 'Scheduled' }">
+            <td>
+              <p class="cell"> {{ incident.u_outage_details }} </p>
+              <p class="cell" *ngIf="incident.u_scheduled_outage_begin"> Outage start: {{ incident.u_scheduled_outage_begin }} </p>
+              <p class="cell" *ngIf="incident.u_scheduled_type === 'Scheduled' && incident.u_scheduled_outage_end"> Outage end: {{ incident.u_scheduled_outage_end }} </p>
+              <p class="cell">State: {{ incident.state }}</p>
+              <a href="{{ getLinkToIncident(incident.sys_id) }}" target="_blank">link</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </ng-template>
+    </ngb-tab>
+    <div *ngIf="loading">
+      Services loading...
+    </div>
+  </ngb-tabset>
+</div>
+
+<div class="btn-group btn-group-toggle" ngbRadioGroup [(ngModel)]="forAlm">
+  <label ngbButtonLabel class="btn-outline-primary btn-sm">
+    <input ngbButton type="radio" value="ALM">ALM
+  </label>
+  <label ngbButtonLabel class="btn-outline-primary btn-sm">
+    <input ngbButton type="radio" value="ALL">All
+  </label>
+</div>

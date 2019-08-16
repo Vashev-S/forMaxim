@@ -1,0 +1,27 @@
+{
+  "snow": {
+    "instance": "emcesmdev.service-now.com",
+    "auth": "",
+    "endpoint": "x_emce2_deploynoti_index.do"
+  },
+  "application": {
+    "name": "Notification Alert",
+    "scope": "x_emce2_deploynotificationalert",
+    "sys_id": "40d102f21312ff4476dcb3776144b08a"
+  },
+  "files": {
+    "html": {
+      "index": "64d186fedbd2b38464d87d8bbf9619f2"
+    },
+    "js": {
+      "inline": "",
+      "polyfills": "acd142f21312ff4476dcb3776144b064",
+      "vendor": "",
+      "main": "e8d1c2f21312ff4476dcb3776144b09e",
+      "runtime": "64d182fedbd2b38464d87d8bbf9619a4"
+    },
+    "css": {
+      "styles": "ecd142fedbd2b38464d87d8bbf9619f5"
+    }
+  }
+}
